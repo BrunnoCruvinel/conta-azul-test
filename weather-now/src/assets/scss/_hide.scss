@@ -1,0 +1,23 @@
+/* HIDE */
+
+.hide {
+    display: none;
+}
+
+@media (max-width: $size-s) {
+    .hide-s {
+        display: none;
+    }
+}
+
+@media (min-width: $size-s) {
+    .hide-m {
+        display: none;
+    }
+}
+
+@media (min-width: $size-g) {
+    .hide-g {
+        display: none;
+    }
+}

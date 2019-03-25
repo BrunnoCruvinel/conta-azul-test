@@ -1,0 +1,11 @@
+.weather{
+    padding: 18rem 8%;
+    max-width: 50rem;
+    margin: auto;
+    justify-content: space-between;
+
+
+    @media (max-width:$size-s){
+        padding: 3.5rem 2rem;
+    }
+}

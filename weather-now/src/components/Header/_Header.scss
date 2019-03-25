@@ -1,0 +1,9 @@
+.header{
+    background-color: $white;
+    padding: .9rem .7rem .5rem .7rem;
+    text-align: center;
+    box-shadow: 0 .2rem .2rem $gray-shadow; 
+    &-logo{
+        width: 10rem;
+    }
+}

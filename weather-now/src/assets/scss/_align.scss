@@ -1,0 +1,32 @@
+/* ALIGN */
+
+.align-end {
+    align-content: flex-end;
+    align-items: flex-end;
+}
+
+.align-baseline {
+    align-items: baseline;
+    align-content: baseline;
+}
+
+.align-center {
+    align-items: center;
+    align-content: center;
+}
+
+/* JUSTIFY */
+
+.justify-space {
+    justify-content: space-between;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+

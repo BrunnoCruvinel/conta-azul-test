@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import logo from '../assets/images/logo.svg';
-import './App.scss';
+import AppContent from './App-content'
+import './_App.scss';
 
 class App extends Component {
+
+  constructor(){
+    super()
+    this.state = {
+    
+    }
+  
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          
-        </header>
-      </div>
+    return (      
+      <AppContent {...this.state} />   
     );
   }
 }
