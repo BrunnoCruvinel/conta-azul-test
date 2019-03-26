@@ -21,17 +21,30 @@ class Weather extends Component {
     }
 
     cacheWeather(){
-      Object.keys(this.state.cities).map((city) => this.getWeather(city))
+
+      Object.keys(this.state.cities).map((city) => {
+
+        Weather.getWeather(city).then((result) => {
+          result.name = city;
+          this.setState({ cities: { ...this.state.cities, [city]: result } });
+          localStorage.setItem('weather', JSON.stringify(this.state.cities));
+        })        
+        return true
+      })
       localStorage.setItem('lastUpdate', new Date())
+    }
+
+    
+    static cacheTime(date){
+      let minutes = 10
+      return new Date() > new Date(date).getTime() +  minutes*60000
     }
 
     startWeather(){
         if(!localStorage.getItem('lastUpdate')){
           this.cacheWeather() 
-        }else{
-            const lastUpdate = localStorage.getItem('lastUpdate')
-            let minutes = 10;
-            if(new Date() > new Date(lastUpdate).getTime() +  minutes*60000){
+        }else{             
+            if(Weather.cacheTime(localStorage.getItem('lastUpdate'))){
               this.cacheWeather()
             }else{
               this.setState({ cities: JSON.parse(localStorage.getItem('weather')) })
@@ -39,21 +52,17 @@ class Weather extends Component {
         }        
     }
 
-    getWeather(city){
-        let key = '477e8c525512bcc79bfe23f884646c11'
-        let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${key}`
+    static async getWeather(city){
+
+      let key = '477e8c525512bcc79bfe23f884646c11'
+      let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${key}`
             
-        fetch(url)
-          .then(res => res.json())
-          .then((result) => {
-              result.name = city
-              this.setState({ cities: { ...this.state.cities, [city]: result } })
-              localStorage.setItem('weather', JSON.stringify(this.state.cities))
-          })
-          .catch((e) => {
-            this.setState({ cities: { ...this.state.cities, [city]: {fail: true} } })
-            console.log(e)
-          })    
+      try {
+        return await fetch(url).then(res=>res.json());
+      }
+      catch (e) {
+        return false;
+      }    
     }
 
     render() {
