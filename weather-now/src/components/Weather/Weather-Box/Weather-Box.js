@@ -1,6 +1,7 @@
 import React from 'react'
 import Loader from '../../Loader/Loader'
 import Button from '../../Button/Button'
+import PropTypes from 'prop-types'
 
 export const TemperatureColor = (temp) => {
     temp = parseInt(Math.round(temp))
@@ -52,5 +53,11 @@ export const WeatherBox = ({ city, refresh }) => (
             
         </div>
 )
+
+
+WeatherBox.propTypes = {
+    city: PropTypes.object.isRequired,
+    refresh:  PropTypes.func
+}
 
 export default WeatherBox
